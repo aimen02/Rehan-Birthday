@@ -1,0 +1,629 @@
+/* Curtain Container */
+    .curtain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+        z-index: 10; /* curtain layer */
+
+    }
+
+    /* Left & Right Curtain Panels */
+    .panel {
+      flex: 1;
+      background: linear-gradient(to bottom, #be85ff, #be85ff);
+      box-shadow: inset -5px 0 20px rgba(0,0,0,0.5);
+      transition: transform 2s ease-in-out;
+    }
+
+    .left {
+      transform: translateX(0);
+    }
+    .right {
+      transform: translateX(0);
+    }
+
+    /* Open effect */
+    .open .left {
+      transform: translateX(-100%);
+    }
+    .open .right {
+      transform: translateX(100%);
+    }
+
+    /* Reveal Button */
+    .reveal-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background: rgb(251, 236, 255);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 20; /* make sure button is above curtain/panels */
+      animation: bounce 1s infinite alternate;
+    }
+
+    .reveal-btn-text {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #002447;
+      text-shadow: 1px 1px 0 #fff, 2px 2px 0 #90caf9;
+    }
+
+    @keyframes bounce {
+      from { transform: translate(-50%, -50%) scale(1); }
+      to { transform: translate(-50%, -55%) scale(1.1); }
+    }
+
+    body {
+      background: #b3e5fc; /* Cute light blue */
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* push content UP instead of centered */
+      padding-top: 40px; /* control top spacing */
+    }
+
+    .birthday-text {
+      text-align: center;
+      margin-top: 1px;   /* small gap under cake */
+    }
+
+    h1 {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #1976d2;
+      font-size: 3em;
+      margin-top: -500px;  /* small gap above */
+      margin-bottom: 0.1em; /* reduce gap below heading */
+      text-shadow: 1px 1px 0 #fff, 2px 2px 0 #90caf9;
+    }
+
+    p {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #1976d2;
+      font-size: 2em;
+      margin-top: 0;  /* remove extra space above */
+      text-shadow: 1px 1px 0 #fff;
+      text-align: center;
+    }
+
+    /* Move SVG cake higher */
+    #cake {
+      position: relative;
+      transform: translateY(-550px); /* adjust height */
+      margin: 0 auto;
+    }
+
+    .candle-drop {
+      transform: translateY(-200px); /* start way above */
+      animation: drop-candle 1.2s cubic-bezier(.4,1.7,.6,1) forwards;
+      animation-delay: 4s; /* Wait for cake + icing animation */
+    }
+
+    #confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 5; /* below curtain */
+}
+
+
+body {
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+    @keyframes drop-candle {
+      0% { transform: translateY(-200px); }
+      80% { transform: translateY(340px); }
+      90% { transform: translateY(330px); }
+      100% { transform: translateY(340px); }
+    }
+
+
+/* Calendar box */
+.calendar {
+  background: #fff;
+  position: absolute;
+  top: 80px;           /* distance from top of screen */
+  left: 20px;           /* distance from left edge */
+  border: 2px solid #e91e63;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: dancing script, cursive;
+  z-index: 9;          /* make sure it stays above background but below curtains */
+}
+
+.calendar h2 {
+  color: #e91e63;
+  margin-bottom: 15px;
+}
+
+.calendar table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.calendar th {
+  color: #e91e63;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.calendar td {
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.calendar td:hover {
+  background: #fce4ec;
+  cursor: pointer;
+}
+
+/* ❤️ Highlight 16 September */
+.calendar .highlight {
+  background: #e91e63;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  position: relative;
+  animation: heartbeat 1.5s infinite;
+}
+
+/* Cute heartbeat animation */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.special-message {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #555;
+  font-style: italic;
+  font-family: dancing script, cursive;
+}
+
+.fun-21 {
+  position: absolute;
+  top: 200px;
+  right: 5%;
+  transform: translateY(-50%);
+  font-size: 8rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  color: #ff9ad3;
+  background: linear-gradient(45deg, #ff3cac, #784ba0, #2b86c5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 60, 172, 0.7), 
+               0 0 30px rgba(120, 75, 160, 0.7);
+  animation: bounceGlow 2s infinite;
+  z-index: 9; /* Make sure it's visible above cake */
+}
+
+@keyframes bounceGlow {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+    text-shadow: 0 0 15px rgba(255, 60, 172, 0.7), 
+                 0 0 30px rgba(120, 75, 160, 0.7);
+  }
+  50% {
+    transform: translateY(-60%) scale(1.1);
+    text-shadow: 0 0 25px rgba(255, 60, 172, 1), 
+                 0 0 40px rgba(120, 75, 160, 1);
+  }
+}
+
+    /* Love Note Styling */
+.love-note {
+  text-align: center;
+  margin: 30px 0 30px 40px;
+  max-width: 700px;
+  position: absolute;
+  left: 10px;
+  top: 900px;
+}
+
+.love-note h2 {
+  font-size: 3em;
+  font-family: cursive;
+  color: #e91e63;
+  margin-top: -280px;
+  margin-bottom: 20px;
+}
+
+.note {
+  background: #fff9c4; /* sticky note yellow */
+  padding: 30px;
+  margin-left: 2px;
+  border-radius: 12px;
+  font-family: 'Dancing Script', cursive; /* handwriting style */
+  font-size: 1.2em;
+  color: #333;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  transform: rotate(-1.5deg); /* gives a playful pinned note effect */
+}
+
+/* Polaroid */
+.polaroid {
+  background: white;
+  padding: 10px 10px 25px;
+  width: 400px;
+  height: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: center;
+  margin-left: 1300px;
+  margin-right: 120px;
+  margin-top: -220px;
+  margin-bottom: 300px;
+  transform: rotate(2deg);
+}
+.polaroid img {
+  width: 100%;
+  display: block;
+}
+.polaroid .caption {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* second Polaroid */
+.second-polaroid {
+  background: rgb(250, 176, 176);
+  padding: 10px 10px 25px;
+  width: 300px;
+  height: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: center;
+  margin-left: 720px;
+  margin-right: 150px;
+  margin-top: -620px;
+  margin-bottom: 300px;
+  transform: rotate(-2deg);
+}
+.second-polaroid img {
+  width: 100%;
+  height: auto;
+  max-height: 80%;           /* keeps image inside box */
+  object-fit: cover;         /* fills neatly without stretching */
+  border-radius: 8px;
+}
+.second-polaroid .caption {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slider-container {
+    width: 1200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    position: relative;
+}
+
+.slide {
+    min-width: 400px;
+    height: 400px;
+    margin: 0 10px;
+    position: relative;
+    transform: scale(0.8);
+    opacity: 0.6;
+    transition: all 0.5s ease-in-out;  /* smoother transition */
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* keep aspect ratio */
+    border-radius: 10px;
+}
+
+
+.slide.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.fortune-container {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  margin-top: 100px;
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 40; /* ensure above other elements */
+}
+
+.fortune-btn {
+  background-color: #ffb74d;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer; /* Makes cursor a pointer */
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.fortune-btn:hover {
+  background-color: #ffa726;
+  transform: scale(1.07);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.fortune-btn:active {
+  transform: scale(0.95);
+}
+
+.fortune-container h3 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #e91e63;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+#fortuneText {
+  margin-bottom: 18px;
+  font-size: 1.15em;
+  min-height: 32px;
+  text-align: center;
+}
+
+.fortune-cookie-img {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 18px auto;
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+.fortune-cookie-img.opening {
+  opacity: 0;
+}
+
+#drawing-board-section {
+  margin-top: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 40; /* ensure above other elements */
+}
+
+#drawing-board-section h2 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  font-family: cursive;
+  color: #e91e63;
+  font-weight: 300;
+}
+
+.colors {
+  margin-bottom: 12px;
+}
+
+.colors button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.colors button:focus,
+.colors button.selected {
+  border: 2px solid #e91e63;
+}
+
+#board {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #fff;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  cursor: crosshair;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+}
+
+
+.action-btn {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  margin-bottom: 10px;
+  margin: 0 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.action-btn:hover {
+  background: #ad1457;
+}
+
+.envelope-container {
+      position: relative;
+      width: 850px;
+      height: 450px;
+      cursor: pointer;
+      perspective: 1000px;
+      margin-left: 180px;
+      z-index: 41;
+    }
+
+    /* Envelope body */
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      border: 2px solid #ff69b4;
+      border-radius: 6px;
+      overflow: hidden;   /* hides the letter inside */
+      z-index: 50;
+    }
+
+    /* Flap */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 425px solid transparent;
+      border-right: 425px solid transparent;
+      border-top: 200px solid #ff99aa;
+      transform-origin: top center;
+      transition: transform 1s ease;
+      z-index: 55;
+    }
+
+    /* Letter hidden inside */
+    .letter {
+      position: absolute;
+      top: 0%;   /* start fully hidden below inside */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: top 1s ease 1s; /* comes out after flap opens */
+      padding: 20px;
+      margin-bottom: 80px;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.4;
+      z-index: 45;
+    }
+
+    /* Open states */
+    .envelope-container.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-container.open .letter {
+      top: -100%; /* slides fully out */
+      z-index: 80;
+    }
+
+    /* 💌 Romantic Review Section Styling */
+#review-section {
+  margin-top: 50px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  z-index: 40; /* ensure above other elements */
+  position: relative;
+  margin-bottom: 100px;
+}
+
+#review-section h2 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  font-family: cursive;
+  color: #e91e63;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 70px;
+}
+
+#review-section p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+#loveReview {
+  padding: 10px;
+  border: 2px solid #e91e63;
+  border-radius: 10px;
+  width: 70%;
+  font-size: 16px;
+  margin-top: 15px;
+  outline: none;
+  resize: none;
+  z-index: 90;
+}
+
+#loveReview:focus {
+  border-color: #ff4081;
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+}
+
+#review-section button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#review-section button:hover {
+  background: #ff4081;
+  transform: scale(1.05);
+}
+
+#replyDisplay {
+  margin-top: 25px;
+  font-size: 18px;
+  color: #444;
+  font-style: italic;
+}
